@@ -85,6 +85,48 @@ require("lazy").setup({
     end
   },
   
+  -- Icons
+  { "nvim-tree/nvim-web-devicons" },
+  
+  -- Treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = { "lua", "python", "javascript", "typescript", "html", "css" },
+        highlight = { enable = true },
+        indent = { enable = true },
+      })
+    end
+  },
+  
+  -- Navic (breadcrumbs)
+  {
+    "SmiteshP/nvim-navic",
+    dependencies = "neovim/nvim-lspconfig",
+    config = function()
+      require("nvim-navic").setup({
+        lsp = { auto_attach = true }
+      })
+    end
+  },
+  
+  -- Bufferline
+  {
+    "akinsho/bufferline.nvim",
+    dependencies = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("bufferline").setup({
+        options = {
+          diagnostics = "nvim_lsp",
+          show_buffer_close_icons = false,
+          show_close_icon = false,
+        }
+      })
+    end
+  },
+  
   -- File Explorer
   {
     "nvim-tree/nvim-tree.lua",
